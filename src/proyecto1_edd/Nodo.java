@@ -1,41 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package proyecto1_edd;
 
 /**
  *
- * @author Christian
+ * @author cbcbe
  */
 public class Nodo {
     
-    private Object valor;
+    private int valor;
     private Nodo siguiente;
     private Nodo anterior;
+    private Lista productos;
+    private String prod;
+    private String nombre;
     
-    public void Nodo(){
-        this.valor = 0;
+    public Nodo(){//nodo utilizado para la lista de los almacenes
+        this.nombre = "";
+        this.siguiente = null;
+        this.anterior = null;
+        this.productos = new Lista();
+        
+    }
+
+    public Nodo(String producto, int valor) {//nodo utilizado para la lista de productos
+        this.prod = producto;
+        this.valor = valor;
         this.siguiente = null;
         this.anterior = null;
     }
-
-    public Nodo getAnterior() {
-        return anterior;
-    }
-
-    public void setAnterior(Nodo anterior) {
-        this.anterior = anterior;
-    }
     
     // Métodos get y set para los atributos.
-    
-    public Object getValor() {
+
+    public int getValor() {
         return valor;
     }
 
-    public void setValor(Object valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
 
@@ -45,6 +45,39 @@ public class Nodo {
 
     public void setSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
-    }   
-}
+    }
 
+    public Nodo getAnterior() {
+        return anterior;
+    }
+
+    public void setAnterior(Nodo anterior) {
+        this.anterior = anterior;
+    }
+
+    public Lista getProductos() {
+        return productos;
+    }
+
+    public void setProductos(Lista productos) {
+        this.productos = productos;
+    }
+
+    public String getProd() {
+        return prod;
+    }
+
+    public void setProd(String prod) {
+        this.prod = prod;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+   
+}
