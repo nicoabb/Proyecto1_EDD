@@ -10,7 +10,7 @@ package proyecto1_edd;
  * @author Christian
  */
 public class Grafo {
-     private boolean dirigido; // Indica si es dirigido o no.
+    private boolean dirigido; // Indica si es dirigido o no.
     private int maxNodos; // Tamaño máximo de la tabla.
     private int numVertices; // Número de vértices del grafo.
     private boolean matrizAdy [ ] [ ]; // Matriz de adyacencias del grafo.

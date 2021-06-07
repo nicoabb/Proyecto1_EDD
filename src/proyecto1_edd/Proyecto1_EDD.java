@@ -15,7 +15,8 @@ public class Proyecto1_EDD {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        DataManage prueba = new DataManage();
+        prueba.readtxt();
     }
     
 }

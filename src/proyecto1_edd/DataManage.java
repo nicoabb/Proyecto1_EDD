@@ -6,48 +6,51 @@
 package proyecto1_edd;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
-import javax.swing.JOptionPane;
+import java.io.IOException;
 
 /**
- * NO SIRVE /// ESTA POR LA MITAD
- * @author Christian
+ * 
+ * @author Nicolás 
  */
 public class DataManage {
-        public Grafo armarGrafo(String dir, Grafo grafo){
-        String texto="";
+    
+    public void readtxt(){
+        File file = new File("Test Packages/almacenes.txt"); 
         try{
-           
-            BufferedReader bf = new BufferedReader(new FileReader(dir));
-            
-            String temp = "";
-            String bfRead;
-            
-            while((bfRead = bf.readLine()) != null){//hacer clclo mientras bfRead tiene datos
-                temp += bfRead;    
-            }System.out.println(temp);
-            String[] arr = temp.split(";");
-            int cont = 0;
-            
-            for (int i=0; i < arr.length; i++) {
-                System.out.println(arr[i]);
-                System.out.println("llega1");
-                if(!arr[i].equals("Rutas")) {
-                    cont ++;   
+            boolean empty = file.createNewFile();
+            if(empty){
+                System.out.println("Archivo creado");
+            }else{
+                
+                //Primera lectura para obtener cantidad de líneas
+                FileReader info = new FileReader(file);
+                BufferedReader text = new BufferedReader(info);
+                int txtsize = 0; //cantidad de lineas
+                String line;
+                while((line = text.readLine()) != null){
+                    txtsize += 1;
                 }
+                text.close();
+                
+                //Segunda lectura para convertir txt a String 
+                FileReader info2 = new FileReader(file);
+                BufferedReader text2 = new BufferedReader(info2);
+                String[] content = new String[txtsize];
+                for(int i = 0; (line = text2.readLine()) != null; i++){
+                    content[i] = line;
+                }
+                String textocompleto = String.join("\n", content);
+                
+                //Aqui comienza la división de la información para pasar al grafo
+                String[] orden = textocompleto.split(";");
+                System.out.println(orden[7]);
+                info2.close();
             }
-            for (int j = cont; j < arr.length; j++) {
-                System.out.println("llega2");
-                String line = arr[j];
-                String[] b = line.split(",");
-                System.out.println(b[0]+b[1]+b[2]);         
-            }
-            return grafo;
-            
-
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"ERROR, NO SE PUDO CREAR EL GRAFO");
+        }catch (NumberFormatException | IOException e){
+            System.out.println("No funciona");
         }
-        return grafo;
+        
     }
 }
