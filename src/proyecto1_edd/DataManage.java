@@ -41,12 +41,25 @@ public class DataManage {
                 for(int i = 0; (line = text2.readLine()) != null; i++){
                     content[i] = line;
                 }
+                info2.close();
                 String textocompleto = String.join("\n", content);
                 
-                //Aqui comienza la división de la información para pasar al grafo
-                String[] orden = textocompleto.split(";");
-                System.out.println(orden[7]);
-                info2.close();
+                //Aqui comienza la división de la información para convertir a lista
+                String[] infoorder = textocompleto.split(";");
+                Lista almacenes = new Lista();
+                for(int i = 0; i < infoorder.length; i++){
+                    if(infoorder[i].contains("Almacen ")){
+                        String[] data = infoorder[i].split(":");
+                        almacenes.insertarAlmacen(data[0]);
+                        String[] products = data[1].split("\n");
+                        for(int n = 1; n < products.length; n++){
+                            String[] atr = products[n].split(",");
+                            //atr por los atributos del producto (nombre, cantidad)
+                            almacenes.AgregarProducto(n-1, atr[0], Integer.parseInt(atr[1]));
+                        }
+                    }
+                }
+                almacenes.MostrarAlmacenes();
             }
         }catch (NumberFormatException | IOException e){
             System.out.println("No funciona");
