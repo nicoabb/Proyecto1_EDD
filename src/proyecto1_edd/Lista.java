@@ -77,7 +77,7 @@ public class Lista {
     public void insertarAlmacen(String nombre){
         Nodo pNew = new Nodo();
         pNew.setNombre(nombre);
-        pNew.setId(nombre.substring(nombre.indexOf(" ")));
+        pNew.setId(nombre.substring(nombre.indexOf(" ")+1));
         
         if(esVacio()){
             pFirst = pNew;
@@ -145,6 +145,15 @@ public class Lista {
             aux = aux.getSiguiente();    
             }while(aux!= null);
         }
+    }
+    
+    public void EvaluarRutas(Nodo nd,String ruta){
+        while(nd != null){
+            if(ruta.contains(nd.getId())){
+                System.out.println("Almacen "+nd.getId()+" tiene ruta: "+ruta);
+            }
+            nd = nd.getSiguiente();
+        }   
     }
     
     //elimina el elemento que se ubique en la posición dada

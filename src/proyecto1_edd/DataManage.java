@@ -61,7 +61,7 @@ public class DataManage {
                         if(infoorder[i].contains("Rutas")){
                             String[] rutas = infoorder[i+1].split("\n");
                             for(int m = 1; m <= (rutas.length-1); m++){
-                                
+                                almacenes.EvaluarRutas(almacenes.getpFirst(), rutas[m]);
                             }
                         }
                     }
