@@ -77,6 +77,7 @@ public class Lista {
     public void insertarAlmacen(String nombre){
         Nodo pNew = new Nodo();
         pNew.setNombre(nombre);
+        pNew.setId(nombre.substring(nombre.indexOf(" ")));
         
         if(esVacio()){
             pFirst = pNew;
@@ -86,7 +87,7 @@ public class Lista {
             aux.setSiguiente(pNew);
             pNew.setAnterior(aux);
             pLast = pNew;   
-    }
+        }
         size +=1;
     }
     
@@ -136,11 +137,9 @@ public class Lista {
     //Muestra todos los almacenes
     public void MostrarAlmacenes(){
         Nodo aux = pFirst;
-        
         if(esVacio()){
             System.out.println("Lista Vacía");
         }else{
-           
             do {
             System.out.print(aux.getNombre() + ", ");
             aux = aux.getSiguiente();    

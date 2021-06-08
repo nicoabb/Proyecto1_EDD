@@ -13,9 +13,11 @@ public class Nodo {
     private Lista productos;
     private String prod;
     private String nombre;
+    private String id;
     
     public Nodo(){//nodo utilizado para la lista de los almacenes
         this.nombre = "";
+        this.id = "";
         this.siguiente = null;
         this.anterior = null;
         this.productos = new Lista();
@@ -77,6 +79,14 @@ public class Nodo {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
    
