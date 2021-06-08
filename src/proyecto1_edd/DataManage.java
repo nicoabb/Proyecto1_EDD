@@ -52,14 +52,13 @@ public class DataManage {
                         String[] data = infoorder[i].split(":");
                         almacenes.insertarAlmacen(data[0]);
                         String[] products = data[1].split("\n");
-                        for(int n = 1; n < products.length; n++){
+                        for(int n = 1; n <= (products.length-1); n++){
                             String[] atr = products[n].split(",");
                             //atr por los atributos del producto (nombre, cantidad)
                             almacenes.AgregarProducto(n-1, atr[0], Integer.parseInt(atr[1]));
                         }
                     }
                 }
-                almacenes.MostrarAlmacenes();
             }
         }catch (NumberFormatException | IOException e){
             System.out.println("No funciona");

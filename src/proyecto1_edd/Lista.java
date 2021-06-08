@@ -15,7 +15,7 @@ public class Lista {
 //constructor
     
     public Lista() {
-        pLast=null;
+        pLast = null;
         pFirst = null;
         size = 0;
     }
@@ -89,16 +89,15 @@ public class Lista {
     }
         size +=1;
     }
+    
     //hay que hacer una funcion que convierta la entrada en la posicion
     public void AgregarProducto(int posicion, String nombre, int cantidad){
         Nodo pNew = new Nodo(nombre, cantidad);
-        
-        
         if(esVacio()){
             JOptionPane.showMessageDialog(null, "Debe agregar almacenes para poder agregar productos");
             return;
         }else{
-            Nodo almacen = getNodo(posicion);
+            Nodo almacen = pLast;
             Lista productos = almacen.getProductos();
             if(productos.esVacio()){
                 productos.setpFirst(pNew);
@@ -112,6 +111,7 @@ public class Lista {
             productos.setSize(productos.getSize()+1);
         }
     }
+    
     //muestra productos del almacen de la posicion referenciada
     public void MostrarProductos(int posicion){
         
@@ -130,10 +130,9 @@ public class Lista {
                 aux = aux.getSiguiente();    
                 }while(aux!= null);
             }
-            
-        }
-        
+        }  
     }
+    
     //Muestra todos los almacenes
     public void MostrarAlmacenes(){
         Nodo aux = pFirst;
@@ -143,11 +142,10 @@ public class Lista {
         }else{
            
             do {
-            System.out.print(aux.getValor() + ", ");
+            System.out.print(aux.getNombre() + ", ");
             aux = aux.getSiguiente();    
             }while(aux!= null);
         }
-        
     }
     
     //elimina el elemento que se ubique en la posición dada
@@ -222,10 +220,10 @@ public class Lista {
     }
     
     public Nodo getNodo(int posicion){
-        if (esVacio() ){
+        if (esVacio()){
             System.out.println("Lista vacía");
             return null;
-        }else if(posicion >= size){
+        }else if(posicion > size){
             System.out.println("Posición inválida");
             return null;
         }else{
@@ -235,9 +233,9 @@ public class Lista {
                     return aux;
                 }else{
                     aux = aux.getSiguiente();
-                }
-                
-            } return null;
+                }    
+            } 
+            return null;
         }
     }
     
@@ -258,9 +256,7 @@ public class Lista {
                     } 
                     aux = aux.getSiguiente();
                 }
-                
                 almacen = almacen.getSiguiente();
-                
             }   
         }
         return null;
@@ -325,12 +321,9 @@ public class Lista {
                             }
                         aux = aux.getSiguiente();
                         }
-                        
-                     }
+                    }
                 almacen = almacen.getSiguiente();
-                }
-                
-                
+                }  
             }   
         }
     }
