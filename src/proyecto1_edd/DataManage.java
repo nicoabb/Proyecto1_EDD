@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package proyecto1_edd;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.*;
 
@@ -40,7 +34,7 @@ public class DataManage {
                         for(int n = 1; n <= (products.length-1); n++){ //creacion productos
                             String[] atr = products[n].split(",");
                             //atr por los atributos del producto (nombre, cantidad)
-                            almacenes.AgregarProducto(n-1, atr[0], Integer.parseInt(atr[1]));
+                            almacenes.AgregarProducto(atr[0], Integer.parseInt(atr[1]));
                             
                         }
                     }else{

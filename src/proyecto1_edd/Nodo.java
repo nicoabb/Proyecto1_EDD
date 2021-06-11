@@ -3,7 +3,7 @@ package proyecto1_edd;
 
 /**
  *
- * @author cbcbe
+ * @author Christian
  */
 public class Nodo {
     
@@ -23,9 +23,13 @@ public class Nodo {
         this.anterior = null;
         this.productos = new Lista();
         this.edges = new String[3];
-        
     }
 
+    /**
+     *
+     * @param producto nombre del producto
+     * @param valor cantidad en stock
+     */
     public Nodo(String producto, int valor) {//nodo utilizado para la lista de productos
         this.prod = producto;
         this.valor = valor;
@@ -33,66 +37,130 @@ public class Nodo {
         this.anterior = null;
     }
     
-    // Métodos get y set para los atributos.
-
+    /**
+     *
+     * @return valor de la cantidad en stock del producto
+     */
     public int getValor() {
         return valor;
     }
 
+    /**
+     *
+     * @param valor de la cantidad en stock del producto
+     */
     public void setValor(int valor) {
         this.valor = valor;
     }
 
+    /**
+     *
+     * @return siguiente Nodo
+     */
     public Nodo getSiguiente() {
         return siguiente;
     }
 
+    /**
+     *
+     * @param siguiente Nodo
+     */
     public void setSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
     }
 
+    /**
+     *
+     * @return anterior Nodo
+     */
     public Nodo getAnterior() {
         return anterior;
     }
 
+    /**
+     *
+     * @param anterior Nodo
+     */
     public void setAnterior(Nodo anterior) {
         this.anterior = anterior;
     }
 
+    /**
+     *
+     * @return productos (lista de todos)
+     */
     public Lista getProductos() {
         return productos;
     }
 
+    /**
+     *
+     * @param productos (lista de todos)
+     */
     public void setProductos(Lista productos) {
         this.productos = productos;
     }
 
+    /**
+     *
+     * @return Nombre producto
+     */
     public String getProd() {
         return prod;
     }
 
+    /**
+     *
+     * @param prod (Nombre producto)
+     */
     public void setProd(String prod) {
         this.prod = prod;
     }
 
+    /**
+     *
+     * @return Nombre almacen
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @param nombre almacen
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     *
+     * @return id almacen
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id almacen
+     */
     public void setId(String id) {
         this.id = id;
     }
+
+    /**
+     *
+     * @return edges (almacenes con los que conecta)
+     */
     public String[] getEdges() {
         return edges;
     }
+
+    /**
+     *
+     * @param edges (almacenes con los que conecta)
+     */
     public void setEdges(String[] edges){
         this.edges = edges;
     }

@@ -1,50 +1,76 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package proyecto1_edd;
 
 import javax.swing.JOptionPane;
 
-
+/**
+ *
+ * @author Christian
+ */
 public class Lista {
+    
     private Nodo pFirst;
     private Nodo pLast;
     private int size; 
-//constructor
     
     public Lista() {
         pLast = null;
         pFirst = null;
         size = 0;
     }
-    //Métodos y funciones
 
+    /**
+     *
+     * @return pFirst de lista
+     */
     public Nodo getpFirst() {
         return pFirst;
     }
 
+    /**
+     *
+     * @param pFirst de lista
+     */
     public void setpFirst(Nodo pFirst) {
         this.pFirst = pFirst;
     }
 
+    /**
+     *
+     * @return pLast de lista
+     */
     public Nodo getpLast() {
         return pLast;
     }
 
+    /**
+     *
+     * @param pLast de lista
+     */
     public void setpLast(Nodo pLast) {
         this.pLast = pLast;
     }
 
+    /**
+     *
+     * @return size de lista
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     *
+     * @param size de lista
+     */
     public void setSize(int size) {
         this.size = size;
     }
     
+    /**
+     *
+     * @return lista es vacia
+     */
     public boolean esVacio(){
         if(pFirst == null){
             return true;
@@ -54,6 +80,11 @@ public class Lista {
         }
     }
     
+    /**
+     *
+     * @param posicion proximo nodo
+     * @return null si no existe proximo
+     */
     public Nodo Proximo(Nodo posicion){
         if(posicion.getSiguiente()!= null){
             posicion = posicion.getSiguiente();
@@ -63,17 +94,24 @@ public class Lista {
         }
     } 
     
+    /**
+     *
+     * @param posicion anterior nodo
+     * @return null si no existe anterior
+     */
     public Nodo Anterior(Nodo posicion){
         if(posicion.getAnterior()!= null){
             posicion = posicion.getAnterior();
             return posicion;
         }else{
             return null;
-        }
-        
+        }   
     }
-    
-    //inserta almacen al final de la lista
+
+    /**
+     *
+     * @param id de almacen a insertar (al final de la lista)
+     */
     public void insertarAlmacen(String id){
         Nodo pNew = new Nodo();
         pNew.setId(id);
@@ -92,7 +130,13 @@ public class Lista {
     }
     
     //hay que hacer una funcion que convierta la entrada en la posicion
-    public void AgregarProducto(int posicion, String nombre, int cantidad){
+
+    /**
+     *
+     * @param nombre producto
+     * @param cantidad en stock del producto
+     */
+    public void AgregarProducto(String nombre, int cantidad){
         Nodo pNew = new Nodo(nombre, cantidad);
         if(esVacio()){
             JOptionPane.showMessageDialog(null, "Debe agregar almacenes para poder agregar productos");
@@ -112,14 +156,16 @@ public class Lista {
             productos.setSize(productos.getSize()+1);
         }
     }
-    
-    //muestra productos del almacen de la posicion referenciada
+
+    /**
+     *
+     * @param posicion del almacen a mostrar sus productos
+     */
     public void MostrarProductos(int posicion){
         
         if(esVacio()){
             JOptionPane.showMessageDialog(null, "No existen almacenes");
         }else{
-            
             Nodo almacen = getNodo(posicion);
             Lista productos = almacen.getProductos();
             if(productos.esVacio()){
@@ -134,7 +180,6 @@ public class Lista {
         }  
     }
     
-    //Muestra todos los almacenes
     public void MostrarAlmacenes(){
         Nodo aux = pFirst;
         if(esVacio()){
@@ -146,8 +191,11 @@ public class Lista {
             }while(aux!= null);
         }
     }
-    
-    //elimina el elemento que se ubique en la posición dada
+
+    /**
+     *
+     * @param posicion de almacen a eliminar
+     */
     public void EliminarAlmacen(int posicion){
         
         if(esVacio()){
@@ -183,19 +231,18 @@ public class Lista {
                         aux.getSiguiente().setAnterior(null);
                         pFirst = aux.getSiguiente();
                     }
-                     
                 }else{
                     aux = Proximo(aux);
-                }
-                
+                } 
             }
-            
-        }
-     
-        
+        } 
     }
-    
-    //obtener indice del nodo recibido !!Se puede optimizar recorriendola en funcion de size
+
+    /**
+     *
+     * @param n Nodo a conseguir indice
+     * @return indice del Nodo n
+     */
     public int getIndex(Nodo n){
         
         if(esVacio()){
@@ -210,7 +257,6 @@ public class Lista {
                 }else{
                 aux = aux.getSiguiente();
                 cont ++;
-                
                 }
         }return cont;
                 
@@ -218,6 +264,11 @@ public class Lista {
     
     }
     
+    /**
+     *
+     * @param posicion del Nodo a acceder
+     * @return aux apuntador del Nodo a acceder, null de no existir o ser válido
+     */
     public Nodo getNodo(int posicion){
         if (esVacio()){
             System.out.println("Lista vacía");
@@ -238,6 +289,11 @@ public class Lista {
         }
     }
     
+    /**
+     *
+     * @param nombre del producto
+     * @return aux apuntador del producto a acceder, null de no existir o ser válido
+     */
     public Nodo getProducto(String nombre){
         if (esVacio() ){
             System.out.println("Lista vacía");
@@ -261,10 +317,14 @@ public class Lista {
         return null;
     }
     
+    /**
+     *
+     * @param nombre producto a restar su stock
+     * @param cantidad a restar
+     */
     public void EliminarStock(String nombre, int cantidad){
         if (esVacio() ){
             System.out.println("Lista vacía");
-            
         }else {
             Nodo almacen = pFirst;
             while(almacen!= null){
@@ -274,34 +334,32 @@ public class Lista {
                     Nodo aux = productos.getpFirst();
                     
                     for (int i = 0; i < productos.getSize(); i++) {
-                    
                         if(aux.getProd().equals(nombre)){
-                            
                             int total = aux.getValor()-cantidad;
                             if(total<0){
                                 JOptionPane.showMessageDialog(null, "No puedes eliminar más elementos de los que existen");
                                 return;
                             }else{
-                                
                                 aux.setValor(total);
-                               
                                 return;
                             }
-                        
                         }
                         aux = aux.getSiguiente();
                      }
                 }
-                
                 almacen = almacen.getSiguiente();
             }   
         }
     }
     
+    /**
+     *
+     * @param nombre producto a sumar su stock
+     * @param cantidad a sumar
+     */
     public void AgregarStock(String nombre, int cantidad){
         if (esVacio() ){
             System.out.println("Lista vacía");
-            
         }else {
             Nodo almacen = pFirst;
             while(almacen!= null){
@@ -311,22 +369,18 @@ public class Lista {
                     Nodo aux = productos.getpFirst();
                     
                     for (int i = 0; i < productos.getSize(); i++) {
-                    
                         if(aux.getProd().equals(nombre)){
-                            
                             int total = aux.getValor()+cantidad;                       
                             aux.setValor(total);  
                             return;
-                            }
-                        aux = aux.getSiguiente();
                         }
+                        aux = aux.getSiguiente();
                     }
+                }
                 almacen = almacen.getSiguiente();
-                }  
-            }   
-        }
-    
-    
+            }  
+        }   
     }
+}
     
         
