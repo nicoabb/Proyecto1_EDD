@@ -77,6 +77,7 @@ public class Lista {
     public void insertarAlmacen(String nombre){
         Nodo pNew = new Nodo();
         pNew.setNombre(nombre);
+         
         pNew.setId(nombre.substring(nombre.indexOf(" ")+1));
         
         if(esVacio()){
@@ -334,5 +335,8 @@ public class Lista {
                 }  
             }   
         }
+    
+    
     }
+    
         

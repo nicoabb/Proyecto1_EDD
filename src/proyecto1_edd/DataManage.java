@@ -40,12 +40,13 @@ public class DataManage {
                             String[] atr = products[n].split(",");
                             //atr por los atributos del producto (nombre, cantidad)
                             almacenes.AgregarProducto(n-1, atr[0], Integer.parseInt(atr[1]));
+                            
                         }
                     }else{
                         if(infoorder[i].contains("Rutas")){
                             String[] rutas = infoorder[i+1].split("\n");
                             for(int m = 1; m <= (rutas.length-1); m++){ //creacion rutas
-                                almacenes.EvaluarRutas(almacenes.getpFirst(), rutas[m]);
+                                almacenes.setEdges(almacenes.getpFirst(), rutas[m]);
                             }
                         }
                     }
