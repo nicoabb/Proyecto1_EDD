@@ -74,11 +74,10 @@ public class Lista {
     }
     
     //inserta almacen al final de la lista
-    public void insertarAlmacen(String nombre){
+    public void insertarAlmacen(String id){
         Nodo pNew = new Nodo();
-        pNew.setNombre(nombre);
-         
-        pNew.setId(nombre.substring(nombre.indexOf(" ")+1));
+        pNew.setId(id);
+        pNew.setNombre("Almacen " + id);
         
         if(esVacio()){
             pFirst = pNew;
@@ -146,15 +145,6 @@ public class Lista {
             aux = aux.getSiguiente();    
             }while(aux!= null);
         }
-    }
-    
-    public void EvaluarRutas(Nodo nd,String ruta){
-        while(nd != null){
-            if(ruta.contains(nd.getId())){
-                System.out.println("Almacen "+nd.getId()+" tiene ruta: "+ruta);
-            }
-            nd = nd.getSiguiente();
-        }   
     }
     
     //elimina el elemento que se ubique en la posición dada

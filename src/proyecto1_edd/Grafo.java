@@ -3,13 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package proyecto1_edd;
 
 /**
  *
  * @author Christian
  */
+public class Grafo {
 
+    private int size;
+    private Lista[] adylist;
+    private Lista almacenes;
+    
      /**
      * @return the size
      */
@@ -46,7 +52,7 @@ package proyecto1_edd;
     }
 
     /**
-     * @param actors the actors to set
+     * @param almacenes
      */
     public void setAlmacenes(Lista almacenes) {
         this.almacenes = almacenes;
@@ -54,4 +60,3 @@ package proyecto1_edd;
 
     
 }
-    

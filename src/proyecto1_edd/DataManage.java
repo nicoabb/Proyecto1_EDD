@@ -34,7 +34,8 @@ public class DataManage {
                 for(int i = 0; i < infoorder.length; i++){
                     if(infoorder[i].contains("Almacen ")){
                         String[] data = infoorder[i].split(":");
-                        almacenes.insertarAlmacen(data[0]); //creacion almacenes
+                        String id = data[0].substring(data[0].indexOf(" ")+1);
+                        almacenes.insertarAlmacen(id); //creacion almacenes
                         String[] products = data[1].split("\n");
                         for(int n = 1; n <= (products.length-1); n++){ //creacion productos
                             String[] atr = products[n].split(",");
@@ -46,7 +47,15 @@ public class DataManage {
                         if(infoorder[i].contains("Rutas")){
                             String[] rutas = infoorder[i+1].split("\n");
                             for(int m = 1; m <= (rutas.length-1); m++){ //creacion rutas
-                                almacenes.setEdges(almacenes.getpFirst(), rutas[m]);
+                                Nodo pAux = almacenes.getpFirst();
+                                String[] r = rutas[m].split(",");
+                                System.out.println(r[0] + "," + r[1] + "," + r[2]);
+                                while(pAux != null){
+                                    if(rutas[m].contains(pAux.getId())){
+                                        pAux.setEdges(r);
+                                    }
+                                    pAux = pAux.getSiguiente();
+                                }
                             }
                         }
                     }

@@ -14,7 +14,7 @@ public class Nodo {
     private String prod;
     private String nombre;
     private String id;
-    private Lista edges;
+    private String[] edges;
     
     public Nodo(){//nodo utilizado para la lista de los almacenes
         this.nombre = "";
@@ -22,7 +22,7 @@ public class Nodo {
         this.siguiente = null;
         this.anterior = null;
         this.productos = new Lista();
-        this.edges = new Lista();
+        this.edges = new String[3];
         
     }
 
@@ -90,13 +90,10 @@ public class Nodo {
     public void setId(String id) {
         this.id = id;
     }
- public Lista getEdges() {
+    public String[] getEdges() {
         return edges;
     }
-    public void setEdges(Lista edges){
+    public void setEdges(String[] edges){
         this.edges = edges;
     }
-   public void addEdges(String from, String hasta){
-       edges.append(from,hasta); //Crear funcion que agregue la lista de ruta al atributo Nodo
-   }
 }
