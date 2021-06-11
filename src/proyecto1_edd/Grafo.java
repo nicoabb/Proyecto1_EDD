@@ -25,23 +25,23 @@ public class Grafo {
 
     private int size;
     private Lista[] adylist;
-    private Lista actors;
+    private Lista almacenes;
 
     public Grafo(Lista almacenes) {
-        this.actors = actors;
-        this.size = actors.getSize();
+        this.almacenes = almacenes;
+        this.size = almacenes.getSize();
         this.adylist = new Lista[size];
-        for (int i = 0; i < actors.getSize(); i++) {
+        for (int i = 0; i < almacenes.getSize(); i++) {
             Lista a = new Lista();
-            a.appendNodo(actors.index(i));
-            for (int k = 0; k < actors.getSize(); k++) {
-                for (int j = 0; j < actors.index(i).getEdges().getSize(); j++) {
-                    for (int h = 0; h < actors.index(k).getEdges().getSize(); h++) {
-                        Nodo b = actors.index(k).getEdges().searchId(actors.index(i).getEdges().index(j).getId());
+            a.appendNodo(almacenes.index(i));
+            for (int k = 0; k < almacenes.getSize(); k++) {
+                for (int j = 0; j < almacenes.index(i).getEdges().getSize(); j++) {
+                    for (int h = 0; h < almacenes.index(k).getEdges().getSize(); h++) {
+                        Nodo b = almacenes.index(k).getEdges().searchId(almacenes.index(i).getEdges().index(j).getId());
                         if (b != null) {
                             if (actors.index(i).getId() != actors.index(k).getId()) {
-                                if (a.searchId(actors.index(k).getId()) == null) {
-                                    a.appendNodo(actors.index(k));
+                                if (a.searchId(almacenes.index(k).getId()) == null) {
+                                    a.appendNodo(almacenes.index(k));
                                 }
                             }
                         }
@@ -81,17 +81,17 @@ public class Grafo {
     }
 
     /**
-     * @return the actors
+     * @return the almacenes
      */
-    public Lista getActors() {
-        return actors;
+    public Lista getAlmacenes() {
+        return almacenes;
     }
 
     /**
      * @param actors the actors to set
      */
-    public void setActors(Lista almacenes) {
-        this.actors = actors;
+    public void setAlmacenes(Lista almacenes) {
+        this.almacenes = almacenes;
     }
 
     public void graficoId() {
