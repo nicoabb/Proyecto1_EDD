@@ -9,47 +9,120 @@ package proyecto1_edd;
  *
  * @author Christian
  */
+import javax.swing.JOptionPane;
+import org.graphstream.graph.EdgeRejectedException;
+import org.graphstream.graph.ElementNotFoundException;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.IdAlreadyInUseException;
+import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.SingleGraph;
+
+/**
+ *
+ * @author yunch
+ */
 public class Grafo {
-    private boolean dirigido; // Indica si es dirigido o no.
-    private int maxNodos; // Tamaño máximo de la tabla.
-    private int numVertices; // Número de vértices del grafo.
-    private boolean matrizAdy [ ] [ ]; // Matriz de adyacencias del grafo.
 
-    public Grafo(boolean dirigido, int n) {
-        this.dirigido = dirigido;
-        this.maxNodos = n;
-        this.numVertices = 0;
-        this.matrizAdy = new boolean [n][n];
-    }
-    
-    public void insertaArista (int i, int j) {
-    matrizAdy [i] [j] = true;
-    if (!dirigido)
-    matrizAdy [j] [i] = matrizAdy [i] [j];
-    }
-    
-    public void eliminarArista (int i, int j) {
-    matrizAdy [i] [j] = false;
-    if (!dirigido)
-    matrizAdy [j] [i] = false;
-    }
-    public void insertaVertice (int n) {
-    if ( n > maxNodos - numVertices )
-    System.out.println ("Error, se supera el número máximo de nodos");
-    else {
-    for (int i=0; i < numVertices + n; i++) {
-    for (int j = numVertices; j < numVertices + n; j++)
-    matrizAdy [i] [j] = matrizAdy [j] [i] = false;
-    }
-    numVertices = numVertices + n;
-}
-}
-    public int gradoIn(int j) {
-    int gIn = 0;
-    for (int i = 0; i < numVertices; i++) //recorrido por filas
-    if (matrizAdy [i] [j])
-    gIn++; //manteniendo la posición de la columna en [j]
-    return gIn;
-}
-}
+    private int size;
+    private Lista[] adylist;
+    private Lista actors;
 
+    public Grafo(Lista almacenes) {
+        this.actors = actors;
+        this.size = actors.getSize();
+        this.adylist = new Lista[size];
+        for (int i = 0; i < actors.getSize(); i++) {
+            Lista a = new Lista();
+            a.appendNodo(actors.index(i));
+            for (int k = 0; k < actors.getSize(); k++) {
+                for (int j = 0; j < actors.index(i).getEdges().getSize(); j++) {
+                    for (int h = 0; h < actors.index(k).getEdges().getSize(); h++) {
+                        Nodo b = actors.index(k).getEdges().searchId(actors.index(i).getEdges().index(j).getId());
+                        if (b != null) {
+                            if (actors.index(i).getId() != actors.index(k).getId()) {
+                                if (a.searchId(actors.index(k).getId()) == null) {
+                                    a.appendNodo(actors.index(k));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            adylist[i] = a;
+        }
+
+    }
+     /**
+     * @return the size
+     */
+    public int getSize() {
+        return size;
+    }
+
+    /**
+     * @param size the size to set
+     */
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    /**
+     * @return the adylist
+     */
+    public Lista[] getAdylist() {
+        return adylist;
+    }
+
+    /**
+     * @param adylist the adylist to set
+     */
+    public void setAdylist(Lista[] adylist) {
+        this.adylist = adylist;
+    }
+
+    /**
+     * @return the actors
+     */
+    public Lista getActors() {
+        return actors;
+    }
+
+    /**
+     * @param actors the actors to set
+     */
+    public void setActors(Lista almacenes) {
+        this.actors = actors;
+    }
+
+    public void graficoId() {
+        Graph graph = new SingleGraph("Grafo");
+        graph.setAutoCreate(true);
+        graph.setAttribute("ui.quality");
+        graph.setAttribute("ui.antialias");
+        graph.setAttribute("ui.stylesheet", "node { size-mode: fit; shape: rounded-box; fill-color: white; stroke-mode: plain; padding: 3px, 2px; }edge { shape: blob; size: 3px; fill-color: #444; }");
+        for (int i = 0; i < size; i++) {
+            String id = String.valueOf(adylist[i].index(0).getId());
+            graph.addNode(id);
+        }
+        for (Node node : graph) {
+            node.setAttribute("ui.label", node.getId());
+        }
+        for (int i = 0; i < size; i++) {
+            for (int j = 1; j < adylist[i].getSize(); j++) {
+                int a = adylist[i].index(0).getEdges().getSize();
+                for (int k = 0; k < adylist[i].index(0).getEdges().getSize(); k++) {
+                    try {
+                        String id = String.valueOf(adylist[i].index(j).getEdges().searchId(adylist[i].index(0).getEdges().index(k).getId()));
+                        graph.addEdge(id, String.valueOf(adylist[i].index(j).getId()), String.valueOf(adylist[i].index(0).getId()));
+                    } catch (EdgeRejectedException | ElementNotFoundException | IdAlreadyInUseException e) {
+
+                    }
+                }
+            }
+        }
+
+        graph.display();
+
+    }
+}
+    
