@@ -12,11 +12,13 @@ public class Lista {
     private Nodo pFirst;
     private Nodo pLast;
     private int size; 
+    private String rutastxt;
     
     public Lista() {
         pLast = null;
         pFirst = null;
         size = 0;
+        rutastxt = "";
     }
 
     /**
@@ -66,18 +68,30 @@ public class Lista {
     public void setSize(int size) {
         this.size = size;
     }
+
+    /**
+     *
+     * @return texto de rutas existentes
+     */
+    public String getRutastxt() {
+        return rutastxt;
+    }
+
+    /**
+     *
+     * @param rutastxt texto de las existentes
+     */
+    public void setRutastxt(String rutastxt) {
+        this.rutastxt = rutastxt;
+    }
+    
     
     /**
      *
      * @return lista es vacia
      */
     public boolean esVacio(){
-        if(pFirst == null){
-            return true;
-            
-        }else{
-            return false;
-        }
+        return pFirst == null;
     }
     
     /**
@@ -111,8 +125,9 @@ public class Lista {
     /**
      *
      * @param id de almacen a insertar (al final de la lista)
+     * @param ruta del nuevo almacen
      */
-    public void insertarAlmacen(String id){
+    public void insertarAlmacen(String id, String ruta){
         Nodo pNew = new Nodo();
         pNew.setId(id);
         pNew.setNombre("Almacen " + id);
@@ -127,9 +142,35 @@ public class Lista {
             pLast = pNew;   
         }
         size +=1;
+        this.insertarRuta(pNew,ruta);
     }
     
-    //hay que hacer una funcion que convierta la entrada en la posicion
+    /**
+     *
+     * @param n Nodo creado con insertar Almacen
+     * @param ruta que sigue este nuevo Almacen
+     */
+    public void insertarRuta(Nodo n, String ruta){
+        if(ruta != null){
+            String[] r = ruta.split(",");
+            if(r.length > 3){
+                int a = r.length;
+                int cicle = a/3;
+                int b = 0;
+                while(cicle != 0){
+                    String[] c = new String[3];
+                    System.arraycopy(r, b, c, 0, 3);
+                    this.rutastxt += c[0] + "," + c[1] + "," + c[2] + "\n";
+                    n.setEdges(c);
+                    b += 3;
+                    cicle -= 1;
+                } 
+            }else{
+                this.rutastxt += ruta;
+                n.setEdges(r); 
+            }
+        }
+    }
 
     /**
      *
@@ -140,7 +181,6 @@ public class Lista {
         Nodo pNew = new Nodo(nombre, cantidad);
         if(esVacio()){
             JOptionPane.showMessageDialog(null, "Debe agregar almacenes para poder agregar productos");
-            return;
         }else{
             Nodo almacen = pLast;
             Lista productos = almacen.getProductos();
@@ -204,8 +244,7 @@ public class Lista {
         }else if(posicion >= size){
             System.out.println("Posicion inválida");
         }else{
-            Nodo aux = new Nodo();
-            aux = pFirst;
+            Nodo aux = pFirst;
             if (posicion == 0){
                 if(size != 1){
                     pFirst = aux.getSiguiente();
