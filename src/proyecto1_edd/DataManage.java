@@ -1,4 +1,3 @@
-
 package proyecto1_edd;
 
 import java.io.File;
@@ -16,7 +15,7 @@ public class DataManage {
      *
      * @return Lista de almacenes
      */
-    public Lista readtxt(){
+    public Grafo readtxt(){
         File file = new File("Test Packages/almacenes.txt"); 
         try{
             boolean empty = file.createNewFile();
@@ -48,17 +47,21 @@ public class DataManage {
                             for(int m = 1; m <= (rutas.length-1); m++){ //creacion rutas
                                 Nodo pAux = almacenes.getpFirst();
                                 String[] r = rutas[m].split(",");
-                                while(pAux != null){
-                                    if(rutas[m].contains(pAux.getId())){
+                                while(pAux!= null){
+                                    if(r[0].contains(pAux.getId())){
+                                       
                                         pAux.setEdges(r);
                                     }
+                                  
                                     pAux = pAux.getSiguiente();
                                 }
+                                
                             }
                         }
                     }
                 }
-                return almacenes;
+                Grafo grafo = new Grafo(almacenes); 
+                return grafo;
             }
         }catch (NumberFormatException | IOException e){
             System.out.println("No funciona");
