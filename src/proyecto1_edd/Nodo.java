@@ -161,7 +161,24 @@ public class Nodo {
      *
      * @param edges (almacenes con los que conecta)
      */
+    /**
+     *
+     * @param edges (almacenes con los que conecta)
+     */
     public void setEdges(String[] edges){
-        this.edges = edges;
+        String [] auxi  = this.edges; 
+        if (auxi != null){
+          int fal = auxi.length; 
+          int sal = edges.length; 
+          String[] result = new String[fal+sal];
+          System.arraycopy(auxi, 0, result, 0, fal);  
+          System.arraycopy(edges, 0, result, fal, sal);  
+        
+          this.edges = result;
+        } else if (auxi == null){
+            this.edges = edges;
+        }
+         
+        
     }
 }
