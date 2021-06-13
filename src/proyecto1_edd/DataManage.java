@@ -1,3 +1,4 @@
+
 package proyecto1_edd;
 
 import java.io.File;
@@ -13,56 +14,50 @@ public class DataManage {
     
     /**
      *
+     * @param path de archivo
      * @return Lista de almacenes
      */
-    public Grafo readtxt(){
-        File file = new File("Test Packages/almacenes.txt"); 
+    public Lista readtxt(String path){
+        File file = new File(path); 
         try{
-            boolean empty = file.createNewFile();
-            if(empty){
-                System.out.println("Archivo creado");
-            }else{
-                //lectura completa de archivo
-                byte[] alltxt = Files.readAllBytes(Paths.get("Test Packages/almacenes.txt"));
-                String info = new String(alltxt);
+            
+            //Lectura completa de archivo
+            byte[] alltxt = Files.readAllBytes(Paths.get(path));
+            String info = new String(alltxt);
                 
-                //División del texto para enviar a grafo
-                String[] infoorder = info.split(";");
-                Lista almacenes = new Lista();
-                for(int i = 0; i < infoorder.length; i++){
-                    if(infoorder[i].contains("Almacen ")){
-                        String[] data = infoorder[i].split(":");
-                        String id = data[0].substring(data[0].indexOf(" ")+1);
-                        almacenes.insertarAlmacen(id,null); //creacion almacenes
-                        String[] products = data[1].split("\n");
-                        for(int n = 1; n <= (products.length-1); n++){ //creacion productos
-                            String[] atr = products[n].split(",");
-                            //atr por los atributos del producto (nombre, cantidad)
-                            almacenes.AgregarProducto(atr[0], Integer.parseInt(atr[1]));
-                        }
-                    }else{
-                        if(infoorder[i].contains("Rutas")){
-                            almacenes.setRutastxt(infoorder[i+1]);
-                            String[] rutas = infoorder[i+1].split("\n");
-                            for(int m = 1; m <= (rutas.length-1); m++){ //creacion rutas
-                                Nodo pAux = almacenes.getpFirst();
-                                String[] r = rutas[m].split(",");
-                                while(pAux!= null){
-                                    if(r[0].contains(pAux.getId())){
-                                       
-                                        pAux.setEdges(r);
-                                    }
-                                  
-                                    pAux = pAux.getSiguiente();
+            //División del texto para enviar a grafo
+            String[] infoorder = info.split(";");
+            Lista almacenes = new Lista();
+            for(int i = 0; i < infoorder.length; i++){
+                if(infoorder[i].contains("Almacen ")){
+                    String[] data = infoorder[i].split(":");
+                    String id = data[0].substring(data[0].indexOf(" ")+1);
+                    almacenes.insertarAlmacen(id,null); //creacion almacenes
+                    String[] products = data[1].split("\n");
+                    for(int n = 1; n <= (products.length-1); n++){ //creacion productos
+                        String[] atr = products[n].split(",");
+                        //atr por los atributos del producto (nombre, cantidad)
+                        almacenes.AgregarProducto(atr[0], Integer.parseInt(atr[1]));
+                    }
+                }else{
+                    if(infoorder[i].contains("Rutas")){
+                        almacenes.setRutastxt(infoorder[i+1]);
+                        String[] rutas = infoorder[i+1].split("\n");
+                        for(int m = 1; m <= (rutas.length-1); m++){ //creacion rutas
+                            Nodo pAux = almacenes.getpFirst();
+                            String[] r = rutas[m].split(",");
+                            while(pAux != null){
+                                if(rutas[m].contains(pAux.getId())){
+                                    pAux.setEdges(r);
                                 }
-                                
+                                pAux = pAux.getSiguiente();
                             }
                         }
                     }
                 }
-                Grafo grafo = new Grafo(almacenes); 
-                return grafo;
             }
+            return almacenes;
+            
         }catch (NumberFormatException | IOException e){
             System.out.println("No funciona");
         }  
