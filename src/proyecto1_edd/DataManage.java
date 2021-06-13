@@ -40,17 +40,17 @@ public class DataManage {
                         almacenes.AgregarProducto(atr[0], Integer.parseInt(atr[1]));
                     }
                 }else{
-                    if(infoorder[i].contains("Rutas")){
-                        almacenes.setRutastxt(infoorder[i+1]);
-                        String[] rutas = infoorder[i+1].split("\n");
-                        for(int m = 1; m <= (rutas.length-1); m++){ //creacion rutas
-                            Nodo pAux = almacenes.getpFirst();
-                            String[] r = rutas[m].split(",");
-                            while(pAux != null){
-                                if(rutas[m].contains(pAux.getId())){
+                     if(infoorder[i].contains("Rutas")){
+                            almacenes.setRutastxt(infoorder[i+1]);
+                            String[] rutas = infoorder[i+1].split("\n");
+                            for(int m = 1; m <= (rutas.length-1); m++){ //creacion rutas
+                                Nodo pAux = almacenes.getpFirst();
+                                String[] r = rutas[m].split(",");
+                                while(pAux!= null){
+                                    if(r[0].contains(pAux.getId())){
                                     pAux.setEdges(r);
-                                }
-                                pAux = pAux.getSiguiente();
+                                    }
+                                    pAux = pAux.getSiguiente();
                             }
                         }
                     }
