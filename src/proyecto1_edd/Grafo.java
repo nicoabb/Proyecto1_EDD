@@ -9,7 +9,7 @@ import org.graphstream.graph.*;
  */
 public class Grafo {
       public Grafo(Lista almacenes) {
- Graph graph = new SingleGraph("tutorial 1");
+ Graph graph = new SingleGraph("Almacenes");
 
         graph.setStrict(false);
         graph.setAutoCreate(true);
