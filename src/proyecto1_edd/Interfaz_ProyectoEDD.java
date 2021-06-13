@@ -7,6 +7,7 @@ package proyecto1_edd;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -69,10 +70,34 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         prodinfo = new javax.swing.JTextArea();
         fondo3 = new javax.swing.JLabel();
         Pedidos = new javax.swing.JPanel();
-        bienvenido2 = new javax.swing.JLabel();
-        textinicio3 = new javax.swing.JLabel();
+        comprartitle = new javax.swing.JLabel();
+        textcplistado = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listadoprod = new javax.swing.JTextArea();
+        amountproduct = new javax.swing.JTextField();
+        nameproduct = new javax.swing.JTextField();
+        reloadicon = new javax.swing.JButton();
+        shopcart = new javax.swing.JButton();
+        verificarlista = new javax.swing.JLabel();
+        textcpcomprar = new javax.swing.JLabel();
+        textcpcomprar1 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        listacompras = new javax.swing.JTextArea();
+        listaalmacenes = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
         fondo4 = new javax.swing.JLabel();
         Gestiones = new javax.swing.JPanel();
+        gestiontitle = new javax.swing.JLabel();
+        aumentarstock = new javax.swing.JButton();
+        añadirproducto = new javax.swing.JButton();
+        buttonea = new javax.swing.JButton();
+        buttonaa = new javax.swing.JButton();
+        textgalmacen1 = new javax.swing.JLabel();
+        textgalmacen = new javax.swing.JLabel();
+        textgaoe = new javax.swing.JLabel();
+        listaalmacenes1 = new javax.swing.JComboBox<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         fondo5 = new javax.swing.JLabel();
         Grafo = new javax.swing.JPanel();
         fondo6 = new javax.swing.JLabel();
@@ -204,7 +229,7 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        JFileChooser.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, -1, -1));
+        JFileChooser.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, -1, -1));
 
         ExploradorArchivo.setEnabled(false);
         ExploradorArchivo.addActionListener(new java.awt.event.ActionListener() {
@@ -212,7 +237,7 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
                 ExploradorArchivoActionPerformed(evt);
             }
         });
-        JFileChooser.add(ExploradorArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 340, -1));
+        JFileChooser.add(ExploradorArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 340, -1));
 
         titlearchivo.setFont(new java.awt.Font("Corbel Light", 1, 36)); // NOI18N
         titlearchivo.setForeground(new java.awt.Color(0, 0, 51));
@@ -224,7 +249,7 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         textarchivo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         textarchivo.setText("Debe ser un archivo .txt");
         textarchivo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        JFileChooser.add(textarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 340, 40));
+        JFileChooser.add(textarchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 340, 40));
 
         textarchivo2.setFont(new java.awt.Font("Corbel Light", 0, 24)); // NOI18N
         textarchivo2.setForeground(new java.awt.Color(0, 0, 51));
@@ -306,15 +331,82 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
 
         Pedidos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bienvenido2.setFont(new java.awt.Font("Corbel Light", 1, 36)); // NOI18N
-        bienvenido2.setForeground(new java.awt.Color(0, 0, 51));
-        bienvenido2.setText("Comprar Productos");
-        Pedidos.add(bienvenido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
+        comprartitle.setFont(new java.awt.Font("Corbel Light", 1, 36)); // NOI18N
+        comprartitle.setForeground(new java.awt.Color(0, 0, 51));
+        comprartitle.setText("Comprar Productos");
+        Pedidos.add(comprartitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
 
-        textinicio3.setFont(new java.awt.Font("Corbel Light", 0, 21)); // NOI18N
-        textinicio3.setForeground(new java.awt.Color(0, 0, 51));
-        textinicio3.setText("Listado:");
-        Pedidos.add(textinicio3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 130, 40));
+        textcplistado.setFont(new java.awt.Font("Corbel Light", 0, 21)); // NOI18N
+        textcplistado.setForeground(new java.awt.Color(0, 0, 51));
+        textcplistado.setText("Listado del stock:");
+        textcplistado.setToolTipText("");
+        Pedidos.add(textcplistado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 160, 50));
+
+        listadoprod.setColumns(20);
+        listadoprod.setRows(5);
+        listadoprod.setEnabled(false);
+        jScrollPane3.setViewportView(listadoprod);
+
+        Pedidos.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 180, 310));
+
+        amountproduct.setText("Cantidad producto");
+        amountproduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountproductActionPerformed(evt);
+            }
+        });
+        Pedidos.add(amountproduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 150, -1));
+
+        nameproduct.setText("Nombre producto");
+        Pedidos.add(nameproduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 150, -1));
+
+        reloadicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_interfaz/reload.png"))); // NOI18N
+        reloadicon.setContentAreaFilled(false);
+        reloadicon.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_interfaz/rsombreado.png"))); // NOI18N
+        Pedidos.add(reloadicon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 40, 40));
+
+        shopcart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_interfaz/carritomercado.png"))); // NOI18N
+        shopcart.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 51), new java.awt.Color(0, 0, 102), null, new java.awt.Color(0, 0, 51)));
+        shopcart.setContentAreaFilled(false);
+        shopcart.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        shopcart.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_interfaz/cmsombreado.png"))); // NOI18N
+        Pedidos.add(shopcart, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, -1, -1));
+
+        verificarlista.setFont(new java.awt.Font("Corbel Light", 1, 14)); // NOI18N
+        verificarlista.setForeground(new java.awt.Color(0, 0, 51));
+        verificarlista.setText("Verifique su lista y seleccione Almacen:");
+        verificarlista.setToolTipText("");
+        Pedidos.add(verificarlista, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 240, 30));
+
+        textcpcomprar.setFont(new java.awt.Font("Corbel Light", 3, 14)); // NOI18N
+        textcpcomprar.setForeground(new java.awt.Color(0, 0, 51));
+        textcpcomprar.setText("Haga clic en carrito para añadir producto");
+        textcpcomprar.setToolTipText("");
+        Pedidos.add(textcpcomprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 240, 30));
+
+        textcpcomprar1.setFont(new java.awt.Font("Corbel Light", 3, 14)); // NOI18N
+        textcpcomprar1.setForeground(new java.awt.Color(0, 0, 51));
+        textcpcomprar1.setText("y su cantidad a la lista de compra");
+        textcpcomprar1.setToolTipText("");
+        Pedidos.add(textcpcomprar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 240, 30));
+
+        listacompras.setColumns(20);
+        listacompras.setRows(5);
+        listacompras.setEnabled(false);
+        jScrollPane4.setViewportView(listacompras);
+
+        Pedidos.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 220, -1));
+
+        listaalmacenes.setBackground(new java.awt.Color(0, 0, 51));
+        listaalmacenes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Pedidos.add(listaalmacenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 220, -1));
+
+        jButton2.setBackground(new java.awt.Color(1, 1, 22));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(204, 204, 204));
+        jButton2.setText("Realizar Compra");
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Pedidos.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 220, 50));
 
         fondo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_interfaz/Fondointerfaz.jpeg"))); // NOI18N
         fondo4.setText("jLabel1");
@@ -323,6 +415,88 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         jTabbedPane1.addTab("Comprar", Pedidos);
 
         Gestiones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        gestiontitle.setFont(new java.awt.Font("Corbel Light", 1, 36)); // NOI18N
+        gestiontitle.setForeground(new java.awt.Color(0, 0, 51));
+        gestiontitle.setText("Gestionar Almacenes");
+        Gestiones.add(gestiontitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
+
+        aumentarstock.setBackground(new java.awt.Color(1, 1, 22));
+        aumentarstock.setForeground(new java.awt.Color(204, 204, 204));
+        aumentarstock.setText("Aumentar Stock");
+        aumentarstock.setBorderPainted(false);
+        aumentarstock.setFocusable(false);
+        aumentarstock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aumentarstockActionPerformed(evt);
+            }
+        });
+        Gestiones.add(aumentarstock, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 190, -1));
+
+        añadirproducto.setBackground(new java.awt.Color(1, 1, 22));
+        añadirproducto.setForeground(new java.awt.Color(204, 204, 204));
+        añadirproducto.setText("Añadir Producto");
+        añadirproducto.setBorderPainted(false);
+        añadirproducto.setFocusable(false);
+        añadirproducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                añadirproductoActionPerformed(evt);
+            }
+        });
+        Gestiones.add(añadirproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 190, -1));
+
+        buttonea.setBackground(new java.awt.Color(1, 1, 22));
+        buttonea.setForeground(new java.awt.Color(204, 204, 204));
+        buttonea.setText("Eliminar Almacén");
+        buttonea.setBorderPainted(false);
+        buttonea.setFocusable(false);
+        buttonea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttoneaActionPerformed(evt);
+            }
+        });
+        Gestiones.add(buttonea, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 200, -1));
+
+        buttonaa.setBackground(new java.awt.Color(1, 1, 22));
+        buttonaa.setForeground(new java.awt.Color(204, 204, 204));
+        buttonaa.setText("Añadir Almacén");
+        buttonaa.setBorderPainted(false);
+        buttonaa.setFocusable(false);
+        buttonaa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonaaActionPerformed(evt);
+            }
+        });
+        Gestiones.add(buttonaa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 200, -1));
+
+        textgalmacen1.setFont(new java.awt.Font("Corbel Light", 1, 17)); // NOI18N
+        textgalmacen1.setForeground(new java.awt.Color(0, 0, 51));
+        textgalmacen1.setText("Si desea editar el stock de un Almacen entonces haga lo siguiente:");
+        textgalmacen1.setToolTipText("");
+        Gestiones.add(textgalmacen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 450, 30));
+
+        textgalmacen.setFont(new java.awt.Font("Corbel Light", 0, 15)); // NOI18N
+        textgalmacen.setForeground(new java.awt.Color(0, 0, 51));
+        textgalmacen.setText("Seleccione almacen para editar:");
+        textgalmacen.setToolTipText("");
+        Gestiones.add(textgalmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, -1, 30));
+
+        textgaoe.setFont(new java.awt.Font("Corbel Light", 0, 15)); // NOI18N
+        textgaoe.setForeground(new java.awt.Color(0, 0, 51));
+        textgaoe.setText("Haga clic en lo que desee realizar:");
+        textgaoe.setToolTipText("");
+        Gestiones.add(textgaoe, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, 30));
+
+        listaalmacenes1.setBackground(new java.awt.Color(0, 0, 51));
+        listaalmacenes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Gestiones.add(listaalmacenes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 190, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setEnabled(false);
+        jScrollPane5.setViewportView(jTextArea1);
+
+        Gestiones.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 250, 130));
 
         fondo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_interfaz/Fondointerfaz.jpeg"))); // NOI18N
         fondo5.setText("jLabel1");
@@ -359,6 +533,7 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
             txt.readtxt(filename);
             ExploradorArchivo.setText("Datos cargados, ya puede comenzar a trabajar");
         }else{
+            JOptionPane.showMessageDialog(this, "Tipo de archivo no válido","ALERTA", JOptionPane.WARNING_MESSAGE);
             ExploradorArchivo.setText("Tipo de archivo no válido. Se requiere: txt");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -395,6 +570,26 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void amountproductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountproductActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountproductActionPerformed
+
+    private void buttonaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonaaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonaaActionPerformed
+
+    private void buttoneaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttoneaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttoneaActionPerformed
+
+    private void añadirproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirproductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_añadirproductoActionPerformed
+
+    private void aumentarstockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aumentarstockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aumentarstockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -439,17 +634,22 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
     private javax.swing.JPanel JFileChooser;
     private javax.swing.JPanel Pedidos;
     private javax.swing.JPanel ReporteDisponibilidad;
+    private javax.swing.JTextField amountproduct;
+    private javax.swing.JButton aumentarstock;
     private javax.swing.JTextArea aypinfo;
+    private javax.swing.JButton añadirproducto;
     private javax.swing.JTextField barradecolor;
     private javax.swing.JButton bdisponibilidad;
     private javax.swing.JLabel bienvenido1;
-    private javax.swing.JLabel bienvenido2;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton buttonaa;
     private javax.swing.JButton buttonarchivo;
     private javax.swing.JButton buttoncomprar;
     private javax.swing.JButton buttond_ayp;
+    private javax.swing.JButton buttonea;
     private javax.swing.JButton buttongestion;
     private javax.swing.JButton buttongrafo;
+    private javax.swing.JLabel comprartitle;
     private javax.swing.JButton exitbutton;
     private javax.swing.JLabel fondo1;
     private javax.swing.JLabel fondo2;
@@ -457,25 +657,44 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
     private javax.swing.JLabel fondo4;
     private javax.swing.JLabel fondo5;
     private javax.swing.JLabel fondo6;
+    private javax.swing.JLabel gestiontitle;
     private javax.swing.JLabel imagenhombre;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> listaalmacenes;
+    private javax.swing.JComboBox<String> listaalmacenes1;
+    private javax.swing.JTextArea listacompras;
+    private javax.swing.JTextArea listadoprod;
+    private javax.swing.JTextField nameproduct;
     private javax.swing.JTextArea prodinfo;
+    private javax.swing.JButton reloadicon;
     private javax.swing.JButton searchdisp;
+    private javax.swing.JButton shopcart;
     private javax.swing.JLabel textarchivo;
     private javax.swing.JLabel textarchivo1;
     private javax.swing.JLabel textarchivo2;
+    private javax.swing.JLabel textcpcomprar;
+    private javax.swing.JLabel textcpcomprar1;
+    private javax.swing.JLabel textcplistado;
     private javax.swing.JLabel textdisp;
     private javax.swing.JLabel textdisp1;
+    private javax.swing.JLabel textgalmacen;
+    private javax.swing.JLabel textgalmacen1;
+    private javax.swing.JLabel textgaoe;
     private javax.swing.JLabel textinicio;
     private javax.swing.JLabel textinicio1;
     private javax.swing.JLabel textinicio2;
-    private javax.swing.JLabel textinicio3;
     private javax.swing.JLabel titlearchivo;
     private javax.swing.JLabel titlearchivo1;
+    private javax.swing.JLabel verificarlista;
     // End of variables declaration//GEN-END:variables
 }
