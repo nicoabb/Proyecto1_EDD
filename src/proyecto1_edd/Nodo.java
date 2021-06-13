@@ -22,7 +22,7 @@ public class Nodo {
         this.siguiente = null;
         this.anterior = null;
         this.productos = new Lista();
-        this.edges = new String[3];
+     
     }
 
     /**
