@@ -13,12 +13,14 @@ public class Lista {
     private Nodo pLast;
     private int size; 
     private String rutastxt;
+    private String path;
     
     public Lista() {
         pLast = null;
         pFirst = null;
         size = 0;
         rutastxt = "";
+        path = "";
     }
 
     /**
@@ -84,7 +86,14 @@ public class Lista {
     public void setRutastxt(String rutastxt) {
         this.rutastxt = rutastxt;
     }
-    
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
     
     /**
      *

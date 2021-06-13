@@ -28,6 +28,7 @@ public class DataManage {
             //División del texto para enviar a grafo
             String[] infoorder = info.split(";");
             Lista almacenes = new Lista();
+            almacenes.setPath(path);
             for(int i = 0; i < infoorder.length; i++){
                 if(infoorder[i].contains("Almacen ")){
                     String[] data = infoorder[i].split(":");
@@ -68,37 +69,32 @@ public class DataManage {
      *
      * @param almacenes existentes
      */
-    public void writetxt(Lista almacenes){
-        File file = new File("Test Packages/almacenes.txt"); 
+    public void writetxt(Lista almacenes, String path){
         try{
-            boolean empty = file.createNewFile();
-            if(empty){
-                System.out.println("Archivo creado");
-            }else{
-                
-                //Conseguir toda la informacion repartida en clases
-                String datatxt = "Almacenes;\n";
-                Nodo almacen = almacenes.getpFirst();
-                while(almacen != null){
-                    Lista p = almacen.getProductos();
-                    Nodo product = p.getpFirst();
-                    datatxt += almacen.getNombre() + ":\n";
-                    while(product.getSiguiente() != null){
-                        datatxt += product.getProd() + "," + product.getValor() + "\n";
-                        product = product.getSiguiente();
-                    }
-                    datatxt += product.getProd() + "," + product.getValor() + ";\n";
-                    almacen = almacen.getSiguiente();
+            
+            //Conseguir toda la informacion repartida en clases
+            String datatxt = "Almacenes;\n";
+            Nodo almacen = almacenes.getpFirst();
+            while(almacen != null){
+                Lista p = almacen.getProductos();
+                Nodo product = p.getpFirst();
+                datatxt += almacen.getNombre() + ":\n";
+                while(product.getSiguiente() != null){
+                    datatxt += product.getProd() + "," + product.getValor() + "\n";
+                    product = product.getSiguiente();
                 }
-                datatxt += "Rutas;";
-                datatxt += almacenes.getRutastxt();
-                
-                //Escribir la informacion
-                PrintWriter write;
-                write = new PrintWriter(file);
-                write.print(datatxt);
-                write.close();
+                datatxt += product.getProd() + "," + product.getValor() + ";\n";
+                almacen = almacen.getSiguiente();
             }
+            datatxt += "Rutas;";
+            datatxt += almacenes.getRutastxt();
+                
+            //Escribir la informacion
+            PrintWriter write;
+            write = new PrintWriter(path);
+            write.print(datatxt);
+            write.close();
+            
         }catch (NumberFormatException | IOException e){
             System.out.println("No funciona");
         }
