@@ -1,75 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package proyecto1_edd;
 
+import org.graphstream.graph.*;
+    import org.graphstream.graph.implementations.*;
 /**
  *
- * @author Christian
+ * @author Gabriella
  */
 public class Grafo {
+      public Grafo(Lista almacenes) {
+ Graph graph = new SingleGraph("tutorial 1");
 
-    private int size;
-    private Lista[] adylist;
-    private Lista almacenes;
-    
-    public Grafo(Lista almacenes){
-    this.almacenes = almacenes; 
-    this.size = size; 
-    Lista a = new Lista();
-    this.adylist = new Lista[size];
-    Nodo aux = almacenes.getpFirst();
-    do{
-            System.out.println(aux.getEdges()[0] + aux.getEdges()[1]);
+        graph.setStrict(false);
+        graph.setAutoCreate(true);
+        graph.display();
+        
+        graph.setAutoCreate(true);
+        graph.setAttribute("ui.quality");
+        graph.setAttribute("ui.antialias");
+        graph.setAttribute("ui.stylesheet", "node { size-mode: fit; shape: rounded-box; fill-color: white; stroke-mode: plain; padding: 3px, 2px; }edge { shape: blob; size: 3px; fill-color: #444; }");
+        Nodo aux = almacenes.getpFirst();
+        do{
+            
+            graph.addEdge(aux.getEdges()[0]+aux.getEdges()[1], aux.getEdges()[0], aux.getEdges()[1]);
+            System.out.println(aux.getEdges()[0]+aux.getEdges()[1]);
+            if(aux.getEdges().length > 3){
+                graph.addEdge(aux.getEdges()[3]+aux.getEdges()[4], aux.getEdges()[3], aux.getEdges()[4]);
+            }
+    for(Node node : graph){
+                node.setAttribute("ui.label", node.getId());
+            }
             aux = aux.getSiguiente();
             
             
     }while (aux != null);
-    }
-     /**
-     * @return the size
-     */
-    public int getSize() {
-        return size;
-    }
 
-    /**
-     * @param size the size to set
-     */
-    public void setSize(int size) {
-        this.size = size;
+       
     }
-
-    /**
-     * @return the adylist
-     */
-    public Lista[] getAdylist() {
-        return adylist;
-    }
-
-    /**
-     * @param adylist the adylist to set
-     */
-    public void setAdylist(Lista[] adylist) {
-        this.adylist = adylist;
-    }
-
-    /**
-     * @return the almacenes
-     */
-    public Lista getAlmacenes() {
-        return almacenes;
-    }
-
-    /**
-     * @param almacenes
-     */
-    public void setAlmacenes(Lista almacenes) {
-        this.almacenes = almacenes;
-    }
-
     
 }
