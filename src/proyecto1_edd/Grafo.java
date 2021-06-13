@@ -23,7 +23,6 @@ public class Grafo {
         do{
             
             graph.addEdge(aux.getEdges()[0]+aux.getEdges()[1], aux.getEdges()[0], aux.getEdges()[1]);
-            System.out.println(aux.getEdges()[0]+aux.getEdges()[1]);
             if(aux.getEdges().length > 3){
                 graph.addEdge(aux.getEdges()[3]+aux.getEdges()[4], aux.getEdges()[3], aux.getEdges()[4]);
             }
