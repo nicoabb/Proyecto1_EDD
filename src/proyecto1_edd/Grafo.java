@@ -16,6 +16,19 @@ public class Grafo {
     private Lista[] adylist;
     private Lista almacenes;
     
+    public Grafo(Lista almacenes){
+    this.almacenes = almacenes; 
+    this.size = size; 
+    Lista a = new Lista();
+    this.adylist = new Lista[size];
+    Nodo aux = almacenes.getpFirst();
+    do{
+            System.out.println(aux.getEdges()[0] + aux.getEdges()[1]);
+            aux = aux.getSiguiente();
+            
+            
+    }while (aux != null);
+    }
      /**
      * @return the size
      */
