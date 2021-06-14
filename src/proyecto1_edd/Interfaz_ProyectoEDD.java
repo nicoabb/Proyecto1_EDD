@@ -179,7 +179,7 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         barradecolor.setBorder(null);
         Inicio.add(barradecolor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 482, 510, 10));
 
-        imagenhombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_interfaz/hombre-señalando-derecha-min-removebg-preview.png"))); // NOI18N
+        imagenhombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_interfaz/hombresenalando.png"))); // NOI18N
         Inicio.add(imagenhombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 250, 270));
 
         textinicio1.setFont(new java.awt.Font("Corbel Light", 2, 24)); // NOI18N
