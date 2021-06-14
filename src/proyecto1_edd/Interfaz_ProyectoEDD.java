@@ -11,15 +11,16 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ThecnoMacVZLA
+ * @author Nicolas
  */
 public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
-
+    Lista almacenes = new Lista();
     /**
      * Creates new form Interfaz_ProyectoEDD
      */
     public Interfaz_ProyectoEDD() {
         initComponents();
+        System.setProperty("org.graphstream.ui","swing");        
         this.setLocationRelativeTo(null);
         JOptionPane.showMessageDialog(this, "Cargue archivo antes de comenzar","ALERTA", JOptionPane.WARNING_MESSAGE);
         textgid.setVisible(false);
@@ -127,6 +128,7 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         fondo5 = new javax.swing.JLabel();
         Grafo = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
         fondo6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -631,6 +633,14 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
 
         Grafo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        Grafo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
+
         fondo6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_interfaz/Fondointerfaz.jpeg"))); // NOI18N
         fondo6.setText("jLabel1");
         Grafo.add(fondo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, -1));
@@ -653,10 +663,11 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
         String filename = f.getAbsolutePath();
+        almacenes.setPath(filename);
         if(filename.contains(".txt")){
             String infopanel = "";
             DataManage txt = new DataManage();
-            Lista almacenes = txt.readtxt(filename);
+            txt.readtxt(almacenes,almacenes.getPath());
             Nodo almacen = almacenes.getpFirst();
             while(almacen != null){
                 Lista p = almacen.getProductos();
@@ -766,7 +777,7 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
     }//GEN-LAST:event_textfieldidActionPerformed
 
     private void buttoneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttoneliminarActionPerformed
-        //CHRISTIAN ESTE ES EL BOTON QUE DEBE LLAMAR A ELIMINAR ALMACEN
+        //CHRISTIAN ESTE ES EL BOTON QUE DEBE LLAMAR A ELIMINAR ALMACEN 
     }//GEN-LAST:event_buttoneliminarActionPerformed
 
     private void shopcartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shopcartActionPerformed
@@ -806,6 +817,11 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
     private void listaalmacenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaalmacenesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_listaalmacenesActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Grafo nombre = new Grafo(almacenes);
+        nombre.mostrar();;
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -879,6 +895,7 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
     private javax.swing.JLabel imagenhombre;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

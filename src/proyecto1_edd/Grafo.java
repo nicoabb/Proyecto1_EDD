@@ -2,7 +2,7 @@
 package proyecto1_edd;
 
 import org.graphstream.graph.*;
-    import org.graphstream.graph.implementations.*;
+import org.graphstream.graph.implementations.*;
 /**
  *
  * @author Gabriella
@@ -13,10 +13,8 @@ public class Grafo {
         this.almacenes = almacenes;
         
     }
-      
-    
-       public void mostrar() {
- Graph graph = new SingleGraph("Almacenes");
+        public void mostrar() {
+        Graph graph = new SingleGraph("Almacenes");
 
         graph.setStrict(false);
         graph.setAutoCreate(true);
@@ -33,7 +31,7 @@ public class Grafo {
             if(aux.getEdges().length > 3){
                 graph.addEdge(aux.getEdges()[3]+aux.getEdges()[4], aux.getEdges()[3], aux.getEdges()[4]).setAttribute("length",aux.getEdges()[5]);
             }
-    for(Node node : graph){
+        for(Node node : graph){
                 node.setAttribute("ui.label", node.getId());
             }
             aux = aux.getSiguiente();

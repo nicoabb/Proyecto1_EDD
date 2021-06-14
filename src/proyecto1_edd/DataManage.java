@@ -17,7 +17,7 @@ public class DataManage {
      * @param path de archivo
      * @return Lista de almacenes
      */
-    public Lista readtxt(String path){
+    public Lista readtxt(Lista almacenes,String path){
         File file = new File(path); 
         try{
             
@@ -27,8 +27,6 @@ public class DataManage {
                 
             //División del texto para enviar a grafo
             String[] infoorder = info.split(";");
-            Lista almacenes = new Lista();
-            almacenes.setPath(path);
             for(int i = 0; i < infoorder.length; i++){
                 if(infoorder[i].contains("Almacen ")){
                     String[] data = infoorder[i].split(":");
