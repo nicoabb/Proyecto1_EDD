@@ -15,27 +15,25 @@ import javax.swing.JOptionPane;
  */
 public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
     Lista almacenes = new Lista();
+    DataManage txt = new DataManage();
     /**
      * Creates new form Interfaz_ProyectoEDD
      */
     public Interfaz_ProyectoEDD() {
         initComponents();
-        System.setProperty("org.graphstream.ui","swing");        
+        System.setProperty("org.graphstream.ui","swing");
+        txt.readtxt(almacenes, "Test Packages/almacenes.txt");
         this.setLocationRelativeTo(null);
-        JOptionPane.showMessageDialog(this, "Cargue archivo antes de comenzar","ALERTA", JOptionPane.WARNING_MESSAGE);
         textgid.setVisible(false);
-        textfieldid.setVisible(false);
-        textgselal.setVisible(false);
-        listaalmacenes2.setVisible(false);
-        textgdista.setVisible(false);
-        textfielddistancia.setVisible(false);
+        textfieldaa.setVisible(false);
+        exampletext.setVisible(false);
+        formatx.setVisible(false);
         buttoncrear.setVisible(false);
         textgelid.setVisible(false);
         listaelimalam.setVisible(false);
-        textgdista.setVisible(false);
         buttoneliminar.setVisible(false);
+        productstock.removeAllItems();
         listaalmacenes.removeAllItems();
-        listaalmacenes2.removeAllItems();
         listaalmacenes1.removeAllItems();
         listaelimalam.removeAllItems();
     }
@@ -105,30 +103,36 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         fondo4 = new javax.swing.JLabel();
         Gestiones = new javax.swing.JPanel();
         gestiontitle = new javax.swing.JLabel();
+        textfieldaa = new javax.swing.JScrollPane();
+        textfielda = new javax.swing.JTextArea();
+        buttoneditar = new javax.swing.JButton();
         buttoneliminar = new javax.swing.JButton();
         buttoncrear = new javax.swing.JButton();
+        eliminarstock = new javax.swing.JButton();
         aumentarstock = new javax.swing.JButton();
         añadirproducto = new javax.swing.JButton();
         buttonea = new javax.swing.JButton();
         buttonaa = new javax.swing.JButton();
-        textfielddistancia = new javax.swing.JTextField();
-        textfieldid = new javax.swing.JTextField();
+        textstock = new javax.swing.JLabel();
+        formatx = new javax.swing.JLabel();
+        exampletext = new javax.swing.JLabel();
         textgelid = new javax.swing.JLabel();
-        textgdista = new javax.swing.JLabel();
-        textgselal = new javax.swing.JLabel();
         textgid = new javax.swing.JLabel();
         textgdescrip = new javax.swing.JLabel();
         textgalmacen = new javax.swing.JLabel();
         textgaoe1 = new javax.swing.JLabel();
         textgaoe = new javax.swing.JLabel();
         listaelimalam = new javax.swing.JComboBox<>();
-        listaalmacenes2 = new javax.swing.JComboBox<>();
         listaalmacenes1 = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        fieldañadirp = new javax.swing.JTextField();
+        productstock = new javax.swing.JComboBox<>();
+        jTextField2 = new javax.swing.JTextField();
         fondo5 = new javax.swing.JLabel();
         Grafo = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
+        gestiontitle1 = new javax.swing.JLabel();
         fondo6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -313,6 +317,11 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         buttond_ayp.setBackground(new java.awt.Color(1, 1, 22));
         buttond_ayp.setForeground(new java.awt.Color(204, 204, 204));
         buttond_ayp.setText("Almacenes y sus productos");
+        buttond_ayp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttond_aypActionPerformed(evt);
+            }
+        });
         ReporteDisponibilidad.add(buttond_ayp, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 210, -1));
 
         textdisp1.setFont(new java.awt.Font("Corbel Light", 0, 21)); // NOI18N
@@ -468,7 +477,26 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         gestiontitle.setFont(new java.awt.Font("Corbel Light", 1, 36)); // NOI18N
         gestiontitle.setForeground(new java.awt.Color(0, 0, 51));
         gestiontitle.setText("Gestionar Almacenes");
-        Gestiones.add(gestiontitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
+        Gestiones.add(gestiontitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
+
+        textfielda.setColumns(20);
+        textfielda.setRows(5);
+        textfielda.setText("Almacenes;\nAlmacen (ID solo letras):\n(Producto1),(Cantidad1)\n(Puede agregar tantos productos desee, elimine este paréntesis y respete el punto y coma final)\n(Producto2),(Cantidad2);\nRutas;\n(ID),(Almacén destino 1),(distancia)\n(ID),(Almacén destino 2),(distancia)");
+        textfieldaa.setViewportView(textfielda);
+
+        Gestiones.add(textfieldaa, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 190, 140));
+
+        buttoneditar.setBackground(new java.awt.Color(204, 204, 204));
+        buttoneditar.setForeground(new java.awt.Color(0, 0, 51));
+        buttoneditar.setText("Editar");
+        buttoneditar.setBorderPainted(false);
+        buttoneditar.setFocusable(false);
+        buttoneditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttoneditarActionPerformed(evt);
+            }
+        });
+        Gestiones.add(buttoneditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 190, -1));
 
         buttoneliminar.setBackground(new java.awt.Color(204, 204, 204));
         buttoneliminar.setForeground(new java.awt.Color(0, 0, 51));
@@ -494,9 +522,21 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         });
         Gestiones.add(buttoncrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 200, -1));
 
+        eliminarstock.setBackground(new java.awt.Color(1, 1, 22));
+        eliminarstock.setForeground(new java.awt.Color(204, 204, 204));
+        eliminarstock.setText("Eliminar");
+        eliminarstock.setBorderPainted(false);
+        eliminarstock.setFocusable(false);
+        eliminarstock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarstockActionPerformed(evt);
+            }
+        });
+        Gestiones.add(eliminarstock, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 90, -1));
+
         aumentarstock.setBackground(new java.awt.Color(1, 1, 22));
         aumentarstock.setForeground(new java.awt.Color(204, 204, 204));
-        aumentarstock.setText("Aumentar Stock");
+        aumentarstock.setText("Aumentar");
         aumentarstock.setBorderPainted(false);
         aumentarstock.setFocusable(false);
         aumentarstock.addActionListener(new java.awt.event.ActionListener() {
@@ -504,7 +544,7 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
                 aumentarstockActionPerformed(evt);
             }
         });
-        Gestiones.add(aumentarstock, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 190, -1));
+        Gestiones.add(aumentarstock, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 90, -1));
 
         añadirproducto.setBackground(new java.awt.Color(1, 1, 22));
         añadirproducto.setForeground(new java.awt.Color(204, 204, 204));
@@ -542,48 +582,42 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         });
         Gestiones.add(buttonaa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 200, -1));
 
-        textfielddistancia.setText("(Ej.) 10");
-        Gestiones.add(textfielddistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 200, -1));
+        textstock.setFont(new java.awt.Font("Corbel Light", 0, 15)); // NOI18N
+        textstock.setForeground(new java.awt.Color(0, 0, 51));
+        textstock.setText("Aumentar/Eliminar Stock:");
+        textstock.setToolTipText("");
+        textstock.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        textstock.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Gestiones.add(textstock, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 190, 30));
 
-        textfieldid.setText("(Ej.) A");
-        textfieldid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textfieldidActionPerformed(evt);
-            }
-        });
-        Gestiones.add(textfieldid, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 200, -1));
+        formatx.setFont(new java.awt.Font("Corbel Light", 0, 15)); // NOI18N
+        formatx.setForeground(new java.awt.Color(0, 0, 51));
+        formatx.setText("la informacion que solicitan");
+        formatx.setToolTipText("");
+        Gestiones.add(formatx, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 190, 30));
+
+        exampletext.setFont(new java.awt.Font("Corbel Light", 0, 15)); // NOI18N
+        exampletext.setForeground(new java.awt.Color(0, 0, 51));
+        exampletext.setText("Intercambie los parentesis por");
+        exampletext.setToolTipText("");
+        Gestiones.add(exampletext, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 190, 30));
 
         textgelid.setFont(new java.awt.Font("Corbel Light", 0, 15)); // NOI18N
         textgelid.setForeground(new java.awt.Color(0, 0, 51));
         textgelid.setText("Seleccione Almacen a Eliminar");
         textgelid.setToolTipText("");
         textgelid.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Gestiones.add(textgelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 200, 30));
+        Gestiones.add(textgelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 200, 30));
 
-        textgdista.setFont(new java.awt.Font("Corbel Light", 0, 15)); // NOI18N
-        textgdista.setForeground(new java.awt.Color(0, 0, 51));
-        textgdista.setText("Inserte distancia entre almacenes:");
-        textgdista.setToolTipText("");
-        textgdista.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Gestiones.add(textgdista, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, -1, 30));
-
-        textgselal.setFont(new java.awt.Font("Corbel Light", 0, 15)); // NOI18N
-        textgselal.setForeground(new java.awt.Color(0, 0, 51));
-        textgselal.setText("Seleccione Almacen al que llega:");
-        textgselal.setToolTipText("");
-        textgselal.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Gestiones.add(textgselal, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 170, 200, 30));
-
-        textgid.setFont(new java.awt.Font("Corbel Light", 0, 15)); // NOI18N
+        textgid.setFont(new java.awt.Font("Corbel Light", 1, 15)); // NOI18N
         textgid.setForeground(new java.awt.Color(0, 0, 51));
-        textgid.setText("Inserte ID del Almacén: ");
+        textgid.setText("Inserte los datos solicitados:");
         textgid.setToolTipText("");
-        textgid.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Gestiones.add(textgid, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 110, 150, 30));
+        Gestiones.add(textgid, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 190, 30));
 
         textgdescrip.setFont(new java.awt.Font("Corbel Light", 1, 17)); // NOI18N
         textgdescrip.setForeground(new java.awt.Color(0, 0, 51));
-        textgdescrip.setText("Si desea editar el stock de un Almacen entonces haga lo siguiente:");
+        textgdescrip.setText("Para editar stock almacén:");
         textgdescrip.setToolTipText("");
         Gestiones.add(textgdescrip, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 450, 30));
 
@@ -591,7 +625,7 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         textgalmacen.setForeground(new java.awt.Color(0, 0, 51));
         textgalmacen.setText("Seleccione almacen para editar:");
         textgalmacen.setToolTipText("");
-        Gestiones.add(textgalmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, 30));
+        Gestiones.add(textgalmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, 30));
 
         textgaoe1.setFont(new java.awt.Font("Corbel Light", 0, 20)); // NOI18N
         textgaoe1.setForeground(new java.awt.Color(0, 0, 51));
@@ -608,22 +642,33 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
 
         listaelimalam.setBackground(new java.awt.Color(0, 0, 51));
         listaelimalam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        Gestiones.add(listaelimalam, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 200, -1));
-
-        listaalmacenes2.setBackground(new java.awt.Color(0, 0, 51));
-        listaalmacenes2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        Gestiones.add(listaalmacenes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 200, -1));
+        Gestiones.add(listaelimalam, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 190, -1));
 
         listaalmacenes1.setBackground(new java.awt.Color(0, 0, 51));
         listaalmacenes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        Gestiones.add(listaalmacenes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 190, -1));
+        listaalmacenes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaalmacenes1ActionPerformed(evt);
+            }
+        });
+        Gestiones.add(listaalmacenes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 190, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setEnabled(false);
         jScrollPane5.setViewportView(jTextArea1);
 
-        Gestiones.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 240, 130));
+        Gestiones.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 200, 60));
+
+        fieldañadirp.setText("(Producto),(Cantidad)");
+        Gestiones.add(fieldañadirp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 200, -1));
+
+        productstock.setBackground(new java.awt.Color(0, 0, 51));
+        productstock.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Gestiones.add(productstock, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 120, -1));
+
+        jTextField2.setText("(Cantidad)");
+        Gestiones.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, -1, -1));
 
         fondo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_interfaz/Fondointerfaz.jpeg"))); // NOI18N
         fondo5.setText("jLabel1");
@@ -633,13 +678,20 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
 
         Grafo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setText("jButton3");
+        jButton3.setBackground(new java.awt.Color(1, 1, 22));
+        jButton3.setForeground(new java.awt.Color(204, 204, 204));
+        jButton3.setText("Visualizar Grafo");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        Grafo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
+        Grafo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 120, 40));
+
+        gestiontitle1.setFont(new java.awt.Font("Corbel Light", 1, 36)); // NOI18N
+        gestiontitle1.setForeground(new java.awt.Color(0, 0, 51));
+        gestiontitle1.setText("¡Haga clic para ver el Grafo!");
+        Grafo.add(gestiontitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
         fondo6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes_interfaz/Fondointerfaz.jpeg"))); // NOI18N
         fondo6.setText("jLabel1");
@@ -657,23 +709,18 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
     private void exitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitbuttonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitbuttonActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-        String filename = f.getAbsolutePath();
-        almacenes.setPath(filename);
-        if(filename.contains(".txt")){
-            String infopanel = "";
-            DataManage txt = new DataManage();
-            txt.readtxt(almacenes,almacenes.getPath());
-            Nodo almacen = almacenes.getpFirst();
+    
+    public void Update(){
+        txt.writetxt(almacenes, almacenes.getPath());
+        listaalmacenes.removeAllItems();
+        listaalmacenes1.removeAllItems();
+        listaelimalam.removeAllItems();
+        String infopanel = "";
+        Nodo almacen = almacenes.getpFirst();
             while(almacen != null){
                 Lista p = almacen.getProductos();
                 Nodo product = p.getpFirst();
                 listaalmacenes.addItem(almacen.getNombre());
-                listaalmacenes2.addItem(almacen.getNombre());
                 listaalmacenes1.addItem(almacen.getNombre());
                 listaelimalam.addItem(almacen.getNombre());
                 infopanel += almacen.getNombre() + ":\n";
@@ -686,8 +733,31 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
                 almacen = almacen.getSiguiente();
             aypinfo.setText(infopanel);
             listadoprod.setText(infopanel);
-            ExploradorArchivo.setText("Datos cargados, ya puede comenzar a trabajar");
+        }
+    }
+    /*
+    public Nodo BuscarAlmacen(String id){
+        Nodo almacen = almacenes.getpFirst();
+        while(almacen != null){
+            if(id.equals(almacen.getId())){
+                return almacen;
             }
+            almacen = almacen.getSiguiente();
+        }
+        return null;
+    }*/
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        String filename = f.getAbsolutePath();
+        almacenes.setPath(filename);
+        if(filename.contains(".txt")){
+            JOptionPane.showMessageDialog(this, "Se debe cargar la nueva data","AVISO", JOptionPane.INFORMATION_MESSAGE);
+            txt.readinfo(almacenes,almacenes.getPath());
+            this.Update();
+            ExploradorArchivo.setText("Datos cargados, ya puede comenzar a trabajar");
         }else{
             JOptionPane.showMessageDialog(this, "Tipo de archivo no válido","ALERTA", JOptionPane.WARNING_MESSAGE);
             ExploradorArchivo.setText("Tipo de archivo no válido. Se requiere: txt");
@@ -732,12 +802,9 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
 
     private void buttonaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonaaActionPerformed
         textgid.setVisible(true);
-        textfieldid.setVisible(true);
-        textgselal.setVisible(true);
-        listaalmacenes2.setVisible(true);
-        textgdista.setVisible(true);
-        textfielddistancia.setVisible(true);
-        textgdista.setVisible(true);
+        textfieldaa.setVisible(true);
+        exampletext.setVisible(true);
+        formatx.setVisible(true);
         buttoncrear.setVisible(true);
         textgelid.setVisible(false);
         listaelimalam.setVisible(false);
@@ -747,12 +814,9 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
 
     private void buttoneaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttoneaActionPerformed
         textgid.setVisible(false);
-        textfieldid.setVisible(false);
-        textgselal.setVisible(false);
-        listaalmacenes2.setVisible(false);
-        textgdista.setVisible(false);
-        textfielddistancia.setVisible(false);
-        textgdista.setVisible(false);
+        textfieldaa.setVisible(false);
+        exampletext.setVisible(false);
+        formatx.setVisible(false);
         buttoncrear.setVisible(false);
         textgelid.setVisible(true);
         listaelimalam.setVisible(true);
@@ -760,58 +824,74 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
     }//GEN-LAST:event_buttoneaActionPerformed
 
     private void añadirproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirproductoActionPerformed
-        // TODO add your handling code here:
+        int b = listaalmacenes1.getSelectedIndex();
+        String nuevo = fieldañadirp.getText();
+        String[] n = nuevo.split(",");
+        try{
+            if(n.length > 2 | !isStringOnlyAlphabet(n[0])){
+                throw new NumberFormatException("");
+            }
+            Integer.parseInt(n[1]);
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Verifique el texto introducido.","ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        almacenes.AgregarProducto(b, n[0], Integer.parseInt(n[1]), true);
+        this.Update();
+        buttoneditar.doClick();
     }//GEN-LAST:event_añadirproductoActionPerformed
 
     private void aumentarstockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aumentarstockActionPerformed
-        // TODO add your handling code here:
+        String nombre = productstock.getSelectedItem().toString();
+        try{
+            int cantidad = Integer.parseInt(jTextField2.getText());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Verifique la cantidad introducida.","ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int cantidad = Integer.parseInt(jTextField2.getText());
+        almacenes.AgregarStock(nombre, cantidad);
+        this.Update();
     }//GEN-LAST:event_aumentarstockActionPerformed
 
+    public static boolean isStringOnlyAlphabet(String str){
+	return ((!str.equals("")) && (str != null) && (str.matches("^[a-zA-Z]*$")));
+    }
+    
     private void buttoncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttoncrearActionPerformed
-        //CHRISTIAN ESTE ES EL BOTON QUE DEBE LLAMAR A INSERTAR ALMACEN
-        
+        String infoaa = textfielda.getText();
+        try{
+            infoaa += almacenes.getRutastxt();
+            txt.readinfo(almacenes, infoaa);
+            this.Update();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Verifique el texto introducido. Elimine paréntesis o líneas que sobren","ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_buttoncrearActionPerformed
-
-    private void textfieldidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfieldidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textfieldidActionPerformed
-
+   
     private void buttoneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttoneliminarActionPerformed
-        //CHRISTIAN ESTE ES EL BOTON QUE DEBE LLAMAR A ELIMINAR ALMACEN 
+        int posicion = listaelimalam.getSelectedIndex();
+        almacenes.EliminarAlmacen(posicion);
     }//GEN-LAST:event_buttoneliminarActionPerformed
 
     private void shopcartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shopcartActionPerformed
         String product = nameproduct.getText();
         String amount = amountproduct.getText();
-        listacompras.setText(product + ": " + amount); //este es el panel de texto debajo del carrito, ahí el usuario ve su lista de compra
-        //verificar que funcione
+        String list = listacompras.getText();
+        listacompras.setText(list + product + ": " + amount + "\n");
     }//GEN-LAST:event_shopcartActionPerformed
 
     private void reloadiconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reloadiconActionPerformed
-        /*DataManage txt = new DataManage();
-        String infopanel = "";
-        Lista almacenes = txt.readtxt(filename);
-        Nodo almacen = almacenes.getpFirst();
-        while(almacen != null){
-            Lista p = almacen.getProductos();
-            Nodo product = p.getpFirst();
-            infopanel += almacen.getNombre() + ":\n";
-            while(product.getSiguiente() != null){
-                infopanel += "  " + product.getProd() + ": " + product.getValor() + "\n";
-                product = product.getSiguiente();
-            }
-            infopanel += "  " + product.getProd() + ": " + product.getValor() + "\n";
-            infopanel += "\n";
-            almacen = almacen.getSiguiente();
-        listadoprod.setText(infopanel);
-        }*/
+        this.Update();
     }//GEN-LAST:event_reloadiconActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //CUANDO DAN CLIC A ESTE BOTON DEBE DESCONTAR EL STOCK DE LOS PRODUCTOS SELECCIONADOS
         String lista = listacompras.getText();
-        String nalmacen = listaalmacenes.getActionCommand(); //ARREGLAR ESTO, HAY QUE LOGRAR QUE TOME EL VALOR DEL ALMACEN SELECCIONADO
-        System.out.println(nalmacen);
+        String[] comprado = lista.split("\n");
+        for(int i = 0; i < comprado.length; i++){
+            String[] c = comprado[i].split(": ");
+            almacenes.EliminarStock(c[0], Integer.parseInt(c[1]));
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void listaalmacenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaalmacenesActionPerformed
@@ -822,6 +902,42 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
         Grafo nombre = new Grafo(almacenes);
         nombre.mostrar();;
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void buttond_aypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttond_aypActionPerformed
+        // haga clicK PARA ACTUALIZAR
+    }//GEN-LAST:event_buttond_aypActionPerformed
+
+    private void listaalmacenes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaalmacenes1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listaalmacenes1ActionPerformed
+
+    private void buttoneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttoneditarActionPerformed
+        productstock.removeAllItems();
+        int b = listaalmacenes1.getSelectedIndex();
+        Nodo almacen = almacenes.getNodo(b);
+        Lista p = almacen.getProductos();
+        Nodo pr = p.getpFirst();
+        String text = "";
+        while(pr != null){
+            productstock.addItem(pr.getProd());
+            text += pr.getProd() + "," + pr.getValor() + "\n";
+            pr = pr.getSiguiente();
+        }
+        jTextArea1.setText(text);
+    }//GEN-LAST:event_buttoneditarActionPerformed
+
+    private void eliminarstockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarstockActionPerformed
+        String nombre = productstock.getSelectedItem().toString();
+        try{
+            int cantidad = Integer.parseInt(jTextField2.getText());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Verifique la cantidad introducida.","ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int cantidad = Integer.parseInt(jTextField2.getText());
+        almacenes.EliminarStock(nombre, cantidad);
+        this.Update();
+    }//GEN-LAST:event_eliminarstockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -880,18 +996,24 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
     private javax.swing.JButton buttoncrear;
     private javax.swing.JButton buttond_ayp;
     private javax.swing.JButton buttonea;
+    private javax.swing.JButton buttoneditar;
     private javax.swing.JButton buttoneliminar;
     private javax.swing.JButton buttongestion;
     private javax.swing.JButton buttongrafo;
     private javax.swing.JLabel comprartitle;
+    private javax.swing.JButton eliminarstock;
+    private javax.swing.JLabel exampletext;
     private javax.swing.JButton exitbutton;
+    private javax.swing.JTextField fieldañadirp;
     private javax.swing.JLabel fondo1;
     private javax.swing.JLabel fondo2;
     private javax.swing.JLabel fondo3;
     private javax.swing.JLabel fondo4;
     private javax.swing.JLabel fondo5;
     private javax.swing.JLabel fondo6;
+    private javax.swing.JLabel formatx;
     private javax.swing.JLabel gestiontitle;
+    private javax.swing.JLabel gestiontitle1;
     private javax.swing.JLabel imagenhombre;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -905,14 +1027,15 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JComboBox<String> listaalmacenes;
     private javax.swing.JComboBox<String> listaalmacenes1;
-    private javax.swing.JComboBox<String> listaalmacenes2;
     private javax.swing.JTextArea listacompras;
     private javax.swing.JTextArea listadoprod;
     private javax.swing.JComboBox<String> listaelimalam;
     private javax.swing.JTextField nameproduct;
     private javax.swing.JTextArea prodinfo;
+    private javax.swing.JComboBox<String> productstock;
     private javax.swing.JButton reloadicon;
     private javax.swing.JButton searchdisp;
     private javax.swing.JButton shopcart;
@@ -924,19 +1047,18 @@ public class Interfaz_ProyectoEDD extends javax.swing.JFrame {
     private javax.swing.JLabel textcplistado;
     private javax.swing.JLabel textdisp;
     private javax.swing.JLabel textdisp1;
-    private javax.swing.JTextField textfielddistancia;
-    private javax.swing.JTextField textfieldid;
+    private javax.swing.JTextArea textfielda;
+    private javax.swing.JScrollPane textfieldaa;
     private javax.swing.JLabel textgalmacen;
     private javax.swing.JLabel textgaoe;
     private javax.swing.JLabel textgaoe1;
     private javax.swing.JLabel textgdescrip;
-    private javax.swing.JLabel textgdista;
     private javax.swing.JLabel textgelid;
     private javax.swing.JLabel textgid;
-    private javax.swing.JLabel textgselal;
     private javax.swing.JLabel textinicio;
     private javax.swing.JLabel textinicio1;
     private javax.swing.JLabel textinicio2;
+    private javax.swing.JLabel textstock;
     private javax.swing.JLabel titlearchivo;
     private javax.swing.JLabel titlearchivo1;
     private javax.swing.JLabel verificarlista;

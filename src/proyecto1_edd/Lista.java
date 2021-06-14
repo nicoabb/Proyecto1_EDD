@@ -183,15 +183,21 @@ public class Lista {
 
     /**
      *
+     * @param posicion del almacen a agregar producto
      * @param nombre producto
      * @param cantidad en stock del producto
      */
-    public void AgregarProducto(String nombre, int cantidad){
+    public void AgregarProducto(int posicion,String nombre, int cantidad, boolean exist){
         Nodo pNew = new Nodo(nombre, cantidad);
         if(esVacio()){
             JOptionPane.showMessageDialog(null, "Debe agregar almacenes para poder agregar productos");
         }else{
-            Nodo almacen = pLast;
+            Nodo almacen;
+            if(exist){
+                almacen = this.getNodo(posicion);
+            }else{
+                almacen = pLast;
+            }
             Lista productos = almacen.getProductos();
             if(productos.esVacio()){
                 productos.setpFirst(pNew);
@@ -266,20 +272,25 @@ public class Lista {
                 
             }
             for (int i = 0; i < size; i++) {
-                               
+                System.out.println("Aqui si");    
                 if(posicion == i){
+                    System.out.println("A ver");
                     if(aux.getAnterior()!= null && aux.getSiguiente()!= null){
+                        System.out.println("Aqui tambien");
                         aux.getAnterior().setSiguiente(aux.getSiguiente());
                         aux.getSiguiente().setAnterior(aux.getAnterior());
                     }else if(aux.getAnterior()!= null){//plast
+                        System.out.println("Nah me fui para aca");
                         aux.getAnterior().setSiguiente(null);
                         pLast = aux.getAnterior();
                         
                     }else if(aux.getSiguiente()!= null){//pfirst
+                        System.out.println("epa doble confirmacion");
                         aux.getSiguiente().setAnterior(null);
                         pFirst = aux.getSiguiente();
                     }
                 }else{
+                    System.out.println("Solo solito");
                     aux = Proximo(aux);
                 } 
             }

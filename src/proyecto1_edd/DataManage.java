@@ -14,18 +14,26 @@ public class DataManage {
     
     /**
      *
+     * @param almacenes existentes
      * @param path de archivo
-     * @return Lista de almacenes
      */
-    public Lista readtxt(Lista almacenes,String path){
+    public void readtxt(Lista almacenes,String path){
         File file = new File(path); 
         try{
             
             //Lectura completa de archivo
             byte[] alltxt = Files.readAllBytes(Paths.get(path));
             String info = new String(alltxt);
-                
-            //División del texto para enviar a grafo
+            
+            //División del texto 
+            this.readinfo(almacenes, info);
+            
+        }catch (NumberFormatException | IOException e){
+            System.out.println("No funciona");
+        }  
+    }
+    
+    public void readinfo(Lista almacenes, String info){
             String[] infoorder = info.split(";");
             for(int i = 0; i < infoorder.length; i++){
                 if(infoorder[i].contains("Almacen ")){
@@ -36,12 +44,12 @@ public class DataManage {
                     for(int n = 1; n <= (products.length-1); n++){ //creacion productos
                         String[] atr = products[n].split(",");
                         //atr por los atributos del producto (nombre, cantidad)
-                        almacenes.AgregarProducto(atr[0], Integer.parseInt(atr[1]));
+                        almacenes.AgregarProducto(n-1,atr[0], Integer.parseInt(atr[1]), false);
                     }
                 }else{
-                     if(infoorder[i].contains("Rutas")){
-                            almacenes.setRutastxt(infoorder[i+1]);
-                            String[] rutas = infoorder[i+1].split("\n");
+                    if(infoorder[i].contains("Rutas")){
+                        almacenes.setRutastxt(infoorder[i+1]);
+                        String[] rutas = infoorder[i+1].split("\n");
                             for(int m = 1; m <= (rutas.length-1); m++){ //creacion rutas
                                 Nodo pAux = almacenes.getpFirst();
                                 String[] r = rutas[m].split(",");
@@ -50,22 +58,17 @@ public class DataManage {
                                     pAux.setEdges(r);
                                     }
                                     pAux = pAux.getSiguiente();
+                                }
                             }
                         }
                     }
-                }
             }
-            return almacenes;
-            
-        }catch (NumberFormatException | IOException e){
-            System.out.println("No funciona");
-        }  
-        return null;
     }
     
     /**
      *
      * @param almacenes existentes
+     * @param path del archivo txt
      */
     public void writetxt(Lista almacenes, String path){
         try{
