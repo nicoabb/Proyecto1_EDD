@@ -10,6 +10,8 @@ Realizado por [Gabriella Suarez](https://github.com/g-suarez), [Christian Behren
   
 - El archivo main es `Interfaz_ProyectoEDD` en NetBeans puedes seleccionar el archivo y dar clic a un botón de **Play** para correrlo
 
+- Al correr el programa debe cargar el archivo `almacenes.txt`, que se encuentra en la carpeta `Test Packages` del mismo proyecto
+
 ## Enunciado
 
 Actualmente la empresa de envíos más grande a nivel mundial es Amazon, en la cual podrás encontrar casi cualquier cosa que necesites. Para una empresa de tal envergadura es necesario manejar una gran cantidad de pedidos y numerosos almacenes para poder abastecer la inmensa demanda de este servicio. 
